@@ -17,4 +17,10 @@ public class TratamentoDeErro {
         return ResponseEntity.notFound().build(); //Aqui retornamos o erro 404 notFound() que e mais especifico para esse erro.
     }
 
+    @ExceptionHandler(MethodArgumentNotValidException.class) //Passamos o parametro que vai ser tratado
+    public ResponseEntity tratarErro400(MethodArgumentNotValidException exception){  //Aqui estamos capturando a exception
+        var erros = exception.getFieldErrors();
+        return ResponseEntity.badRequest().body(erros.stream().map(ErrosException::new).toList());
+
+    }
 }
