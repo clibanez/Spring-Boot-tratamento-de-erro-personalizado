@@ -1,5 +1,6 @@
 package com.hortifruti.exception.model;
 
+import com.hortifruti.exception.dto.ClienteDTO;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -19,4 +20,9 @@ public class Cliente {
     private String cpf;
     private String email;
 
+    public Cliente(ClienteDTO clienteDTO){
+        this.nome = clienteDTO.getNome();
+        this.cpf = clienteDTO.getCpf();
+        this.email = clienteDTO.getEmail();
+    }
 }
